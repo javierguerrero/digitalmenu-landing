@@ -2765,3 +2765,52 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.row.gy-4 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100%; /* Mantiene la misma altura */
+}
+
+.footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Igualar altura */
+  margin-bottom: 85px; /* Ajusta el espacio entre el texto y los íconos */
+}
+
+.social-links a {
+  margin-top: 30px; /* Agrega espacio arriba de los íconos */
+  display: flex;
+  gap: 10px; /* Asegura separación entre íconos */
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Ajustar tamaño de iconos */
+  height: 40px;
+}
+
