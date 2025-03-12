@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+    function enviarFormulario(event) {
+        event.preventDefault();
+        
+        let formData = new FormData(document.getElementById("formulario-contacto"));
+        
+        fetch("enviar_formulario.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data === "success") {
+                document.getElementById("mensaje-enviado").style.display = "block";
+                document.getElementById("formulario-contacto").reset();
+            } else {
+                alert("Error al enviar el formulario. Inténtalo de nuevo.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+</script>
+    <style>
+        .container {
+            max-width: 900px;
+        }
+        .form-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .form-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container">
+        <div class="row form-section">
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="form-box">
+                    <h2 class="text-center">Solicitar una Demo</h2>
+                    <form id="formulario-contacto" onsubmit="enviarFormulario(event)" class="php-email-form">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre y Apellidos</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="negocio" class="form-label">Nombre de tu negocio</label>
+                            <input type="text" class="form-control" id="negocio" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                    </form>
+                    <div id="mensaje-enviado" class="alert alert-success mt-3 text-center" style="display: none;">
+                        ¡Tu información ha sido enviada correctamente!
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center image-section">
+                <img src="assets/img/about.jpg" alt="Imagen de contacto">
+            </div>
+        </div>
+    </div>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
